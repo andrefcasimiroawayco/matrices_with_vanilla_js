@@ -63,7 +63,6 @@ function createPoints()
 
   if(numberOfPoints <= 0) 
   {
-
     var warn = document.createTextNode("<div class='alert alert-danger'>Must be a number higher than 0</div>");
     var warnElement = document.createElement("div");
     warnElement.innerHTML = warn.textContent;
@@ -75,7 +74,6 @@ function createPoints()
 
   for(var i = 0; i < numberOfPoints; i++) 
   {
-
     var labelText = document.createTextNode(""
       + "<br/><div class='row'>"
       + "<div class='col-12'> "
@@ -96,7 +94,6 @@ function createPoints()
 
 function createArray() 
 {
-
   // Check all created arrays 
   var arraysOfX = document.querySelectorAll(".arrayValX");
   var arraysOfY = document.querySelectorAll(".arrayValY");
@@ -159,8 +156,8 @@ function performScale()
 
 
   for(var i = 0; i < matrixes.length; i++) {
-
     var r = { x: 0, y: 0, z: 0 };
+
     r.x = matrixes[i][0] * t.x;
     r.y = matrixes[i][1] * t.y;
     r.z = matrixes[i][2] * t.z;
@@ -186,7 +183,6 @@ function performXRotation()
   angle = parseFloat(document.querySelector('#ang').value);
 
   for(var i = 0; i < matrixes.length; i++) {
-
     var r = { x: 0, y: 0, z: 0 };
 	
     r.x = matrixes[i][0];
@@ -213,7 +209,6 @@ function performYRotation()
   angle = parseFloat(document.querySelector('#ang').value);
 
   for(var i = 0; i < matrixes.length; i++) {
-
     var r = { x: 0, y: 0, z: 0 };
 	
     r.x = (matrixes[i][2] * Math.sin(angle)) + (matrixes[i][0] * Math.cos(angle));
@@ -240,7 +235,6 @@ function performZRotation()
   angle = parseFloat(document.querySelector('#ang').value);
   
   for(var i = 0; i < matrixes.length; i++) {
-
     var r = { x: 0, y: 0, z: 0 };
 	
     r.x = (matrixes[i][0] * Math.cos(angle)) - (matrixes[i][1] * Math.sin(angle));
@@ -265,8 +259,6 @@ function performXYReflexion()
   angle = parseFloat(document.querySelector('#ang').value);
   
   for(var i = 0; i < matrixes.length; i++) {
-
-	
     r.x = matrixes[i][0] * -1;
     r.y = matrixes[i][1] * -1;
     r.z = matrixes[i][2];
@@ -289,7 +281,6 @@ function performXZReflexion()
   angle = parseFloat(document.querySelector('#ang').value);
   
   for(var i = 0; i < matrixes.length; i++) {
-
     var r = { x: 0, y: 0, z: 0 };
 	
     r.x = matrixes[i][0] * -1;
@@ -313,8 +304,7 @@ function performYZReflexion()
 
   angle = parseFloat(document.querySelector('#ang').value);
   
-  for(var i = 0; i < matrixes.length; i++) {
-
+  for (var i = 0; i < matrixes.length; i++) {
     var r = { x: 0, y: 0, z: 0 };
 	
     r.x = matrixes[i][0];
@@ -336,7 +326,6 @@ function performYZReflexion()
 
 function printResult(r, i) 
 {
-
   var labelText = document.createTextNode(""
       + "<br/><div class='row'>"
       + "<div class='col-12'> "
