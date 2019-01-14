@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Trabalho Matemática</title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+      <script src="index.js" type="text/javascript"></script>
+    </head>
+    <body onload="init();" class="bg-light">
+      <div class="container py-5 text-center">
+
+          <h2 class="">
+            Transformações geométricas
+          </h2>
+
+          <hr/>
+
+          <!-- Coluna esquerda: inputs do utilizador (o nr.pontos mais a definição de conjuntos de coordenadas)-->
+          <div class="row">
+            <div class="userInputArea col-md-4 form card order-md-0">
+              <div class="numberPointsArea">
+                <label for="address2">Nr. de pontos: </label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="nrPontos" 
+                  placeholder="" 
+                  value="1"
+                />
+                <button 
+                  style="margin-top: 10px;"
+                  class="btn btn-primary btn-lg btn-block" 
+                  type="button"
+                  onclick="createPoints();"
+                >
+                  Criar conjuntos
+                </button>
+              </div>
+
+              <hr />
+
+              <div class="container row">
+
+                <div id="areaConjuntoPontos">
+                    <!-- É populada dinamicamente via javascript -->
+                </div>
+
+                <!--- Div para espaçar apenas -->
+                <div class="" style="margin-top: 30px;">&nbsp;</div>
+              </div>  
+            </div>
+
+            <!-- Coluna do centro, para transformações sobre os conjuntos criados pelo utilizador -->
+            <div class="col-md-4 form card order-md-1">
+
+
+              <!-- Menu de selecção -->
+              <h5>Operação: </h5>
+              <select id="menuSelecao" onchange="checkSelectMenu();">
+                <option disabled selected>Selecione uma opção</option>
+                <option value="translacao">Translação</option>
+                <option value="escala">Escala</option>
+                <option value="rotacao">Rotação</option>
+                <option value="reflexao">Reflexão</option>
+              </select>
+
+              <br/>
+
+              <!-- Translação -->
+              <div id="menuTranslacao" class="col">
+                <h4>Translação</h4>
+                x: <input type="text" size="5" id="tX" value="1" /><br/>
+                y: <input type="text" size="5" id="tY" value="1" /><br/>
+                z: <input type="text" size="5" id="tZ" value="1" /><br/>
+                <button 
+                  type="button" 
+                  onclick="performTranslate();"
+                >
+                  Translação
+                </button>
+              </div>
+
+              <!-- Escala -->
+				      <div id="menuEscala" class="col">
+                <h4>Escala</h4>
+                x: <input type="text" size="5" id="sX" /><br/>
+                y: <input type="text" size="5" id="sY" /><br/>
+                z: <input type="text" size="5" id="sZ" /><br/>
+                <button 
+                  type="button" 
+                  onclick="performScale();"
+                >
+                  Escala
+                </button>
+              </div>
+
+              <!-- Rotação -->
+				      <div id="menuRotacao" class="col">
+                <h4>Rotação</h4>
+                Ângulo (Radianos): <input type="text" size="5" id="ang" /><br/>
+                <button 
+                  type="button" 
+                  onclick="performXRotation();"
+                >
+                  Rodar em X
+                </button>
+                <button 
+                    type="button" 
+                    onclick="performYRotation();"
+                  >
+                    Rodar em Y
+                  </button>
+                <button 
+                    type="button" 
+                    onclick="performZRotation();"
+                  >
+                    Rodar em Z
+                  </button>
+              </div>
+
+              <!-- Reflexão -->
+				      <div id="menuReflexao" class="col">
+                <h4>Reflexão</h4>
+                <button 
+                  type="button" 
+                  onclick="performXYReflexion();"
+                >
+                  Reflexão XY
+                </button>
+                <button 
+                  type="button" 
+                  onclick="performXZReflexion();"
+                >
+                  Reflexão XZ
+                </button>
+                <button 
+                  type="button" 
+                  onclick="performYZReflexion();"
+                >
+                  Reflexão YZ
+                </button>
+              </div>
+              
+            </div> <!-- Fim dos menus de transformações-->
+        
+            <!-- Coluna da direita, para os resultados-->
+            <div class="col-md-4 order-md-2 container form card">
+              <h4>Resultado</h4>
+              <p id="resultado">...</p>
+            </div>
+
+        </div>
+      </div>
+    </body>
+</html>
