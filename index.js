@@ -52,7 +52,6 @@ function checkSelectMenu() {
 }
 
 function createPoints() {
-
   numberOfPoints = inputNumberOfPoints.value;
 
   // Clear inputPointsArea div
@@ -176,6 +175,7 @@ function performXRotation() {
 
 function performYRotation() {
   outputResult.innerHTML = "";
+
   var angle = parseFloat(document.querySelector('#ang').value);
 
   for (var i = 0; i < matrixes.length; i++) {
@@ -236,7 +236,7 @@ function performXYReflexion() {
 }
 
 function performXZReflexion() {
-	outputResult.innerHTML = "";
+  outputResult.innerHTML = "";
 
   var angle = parseFloat(document.querySelector('#ang').value);
   
@@ -258,7 +258,7 @@ function performXZReflexion() {
 }
 
 function performYZReflexion() {
-	outputResult.innerHTML = "";
+  outputResult.innerHTML = "";
 
   var angle = parseFloat(document.querySelector('#ang').value);
   
