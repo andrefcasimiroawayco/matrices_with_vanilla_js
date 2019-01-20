@@ -1,4 +1,3 @@
-
 // User inputs
 var numberOfPoints = 0;
 var points = { x: 0, y: 0, z: 0};
@@ -13,8 +12,7 @@ var inputPointsArea;
 var selectMenu;
 var menuArray = [];
 
-function init() 
-{
+function init() {
   inputNumberOfPoints = document.querySelector("#nrPontos");
   inputPointsArea = document.querySelector("#areaConjuntoPontos");
   outputResult = document.querySelector("#resultado");
@@ -41,7 +39,6 @@ function init()
 
   // Verify select menu
   checkSelectMenu();
-
 }
 
 function checkSelectMenu() {
@@ -54,26 +51,22 @@ function checkSelectMenu() {
   }
 }
 
-function createPoints() 
-{
+function createPoints() {
+
   numberOfPoints = inputNumberOfPoints.value;
 
   // Clear inputPointsArea div
   inputPointsArea.innerHTML = "";
 
-  if(numberOfPoints <= 0) 
-  {
+  if (numberOfPoints <= 0) {
     var warn = document.createTextNode("<div class='alert alert-danger'>Must be a number higher than 0</div>");
     var warnElement = document.createElement("div");
     warnElement.innerHTML = warn.textContent;
-
     inputPointsArea.appendChild(warnElement);
-
     return;
   }
 
-  for(var i = 0; i < numberOfPoints; i++) 
-  {
+  for (var i = 0; i < numberOfPoints; i++) {
     var labelText = document.createTextNode(""
       + "<br/><div class='row'>"
       + "<div class='col-12'> "
@@ -85,15 +78,13 @@ function createPoints()
     labelDiv.innerHTML = labelText.textContent;
     inputPointsArea.appendChild(labelDiv);
 
-
     nodeToInsert = document.createElement("div")
     nodeToInsert.innerHTML = divContent.textContent;
     inputPointsArea.appendChild(nodeToInsert);
   }
 }
 
-function createArray() 
-{
+function createArray() {
   // Check all created arrays 
   var arraysOfX = document.querySelectorAll(".arrayValX");
   var arraysOfY = document.querySelectorAll(".arrayValY");
@@ -101,31 +92,25 @@ function createArray()
 
   // Clear matrixes before repopulating it
   matrixes = [];
-    
-  for(var i = 0; i < numberOfPoints; i++) 
-  {
-    
+
+  for (var i = 0; i < numberOfPoints; i++) {
     x = parseFloat(arraysOfX[i].value);
     y = parseFloat(arraysOfY[i].value);
     z = parseFloat(arraysOfZ[i].value);
 
     matrixes.push([x, y, z]);
-
   }
 }
 
-function performTranslate() 
-{
+function performTranslate() {
   outputResult.innerHTML = "";
 
   var t = { x: 0, y: 0, z: 0 };
-
   t.x = parseFloat(document.querySelector('#tX').value);
   t.y = parseFloat(document.querySelector('#tY').value);
   t.z = parseFloat(document.querySelector('#tZ').value);
 
-  for(var i = 0; i < matrixes.length; i++) {
-
+  for (var i = 0; i < matrixes.length; i++) {
     // Start off with previous transformations values if they exist
     var r = { x: 0, y: 0, z: 0 };
 
@@ -140,22 +125,18 @@ function performTranslate()
 
     // Print result
     printResult(r, i);
-
   }
-
 }
-function performScale() 
-{
-	outputResult.innerHTML = "";
+
+function performScale() {
+  outputResult.innerHTML = "";
 
   var t = { x: 0, y: 0, z: 0 };
-
   t.x = parseFloat(document.querySelector('#sX').value);
   t.y = parseFloat(document.querySelector('#sY').value);
   t.z = parseFloat(document.querySelector('#sZ').value);
 
-
-  for(var i = 0; i < matrixes.length; i++) {
+  for (var i = 0; i < matrixes.length; i++) {
     var r = { x: 0, y: 0, z: 0 };
 
     r.x = matrixes[i][0] * t.x;
@@ -167,24 +148,18 @@ function performScale()
     matrixes[i][1] = r.y;
     matrixes[i][2] = r.z;
     
-
     // Print result
     printResult(r, i);
-
   }
 }
 
-function performXRotation() 
-{
-	outputResult.innerHTML = "";
+function performXRotation() {
+  outputResult.innerHTML = "";
 
-  var angle = 0;
+  var angle = parseFloat(document.querySelector('#ang').value);
 
-  angle = parseFloat(document.querySelector('#ang').value);
-
-  for(var i = 0; i < matrixes.length; i++) {
+  for (var i = 0; i < matrixes.length; i++) {
     var r = { x: 0, y: 0, z: 0 };
-	
     r.x = matrixes[i][0];
     r.y = (matrixes[i][1] * Math.cos(angle)) - (matrixes[i][2]* Math.sin(angle));
     r.z = (matrixes[i][1] * Math.sin(angle)) + (matrixes[i][2] * Math.cos(angle));
@@ -196,21 +171,15 @@ function performXRotation()
 
     // Print result
     printResult(r, i);
-
   }
 }
 
-function performYRotation() 
-{
-	outputResult.innerHTML = "";
+function performYRotation() {
+  outputResult.innerHTML = "";
+  var angle = parseFloat(document.querySelector('#ang').value);
 
-  var angle = 0;
-
-  angle = parseFloat(document.querySelector('#ang').value);
-
-  for(var i = 0; i < matrixes.length; i++) {
+  for (var i = 0; i < matrixes.length; i++) {
     var r = { x: 0, y: 0, z: 0 };
-	
     r.x = (matrixes[i][2] * Math.sin(angle)) + (matrixes[i][0] * Math.cos(angle));
     r.y = matrixes[i][1];
     r.z = (matrixes[i][2] * Math.cos(angle)) - (matrixes[i][0] * Math.sin(angle));
@@ -222,21 +191,16 @@ function performYRotation()
 
     // Print result
     printResult(r, i);
-
   }
 }
 
-function performZRotation() 
-{
-	outputResult.innerHTML = "";
+function performZRotation() {
+  outputResult.innerHTML = "";
 
-  var angle = 0;
-
-  angle = parseFloat(document.querySelector('#ang').value);
+  var angle = parseFloat(document.querySelector('#ang').value);
   
-  for(var i = 0; i < matrixes.length; i++) {
+  for (var i = 0; i < matrixes.length; i++) {
     var r = { x: 0, y: 0, z: 0 };
-	
     r.x = (matrixes[i][0] * Math.cos(angle)) - (matrixes[i][1] * Math.sin(angle));
     r.y = (matrixes[i][0] * Math.sin(angle)) + (matrixes[i][1] * Math.cos(angle));
     r.z = matrixes[i][2];
@@ -248,17 +212,15 @@ function performZRotation()
 
     // Print result
     printResult(r, i);
-
   }
 }
 
-function performXYReflexion() 
-{
-	outputResult.innerHTML = "";
+function performXYReflexion() {
+  outputResult.innerHTML = "";
 
-  angle = parseFloat(document.querySelector('#ang').value);
+  var angle = parseFloat(document.querySelector('#ang').value);
   
-  for(var i = 0; i < matrixes.length; i++) {
+  for (var i = 0; i < matrixes.length; i++) {
     r.x = matrixes[i][0] * -1;
     r.y = matrixes[i][1] * -1;
     r.z = matrixes[i][2];
@@ -270,17 +232,15 @@ function performXYReflexion()
 
     // Print result
     printResult(r, i);
-
   }
 }
 
-function performXZReflexion() 
-{
+function performXZReflexion() {
 	outputResult.innerHTML = "";
 
-  angle = parseFloat(document.querySelector('#ang').value);
+  var angle = parseFloat(document.querySelector('#ang').value);
   
-  for(var i = 0; i < matrixes.length; i++) {
+  for (var i = 0; i < matrixes.length; i++) {
     var r = { x: 0, y: 0, z: 0 };
 	
     r.x = matrixes[i][0] * -1;
@@ -294,19 +254,16 @@ function performXZReflexion()
 
     // Print result
     printResult(r, i);
-
   }
 }
 
-function performYZReflexion() 
-{
+function performYZReflexion() {
 	outputResult.innerHTML = "";
 
-  angle = parseFloat(document.querySelector('#ang').value);
+  var angle = parseFloat(document.querySelector('#ang').value);
   
   for (var i = 0; i < matrixes.length; i++) {
     var r = { x: 0, y: 0, z: 0 };
-	
     r.x = matrixes[i][0];
     r.y = matrixes[i][1] * -1;
     r.z = matrixes[i][2] * -1;
@@ -318,14 +275,11 @@ function performYZReflexion()
 
     // Print result
     printResult(r, i);
-
   }
 }
 
 // Helper functions
-
-function printResult(r, i) 
-{
+function printResult(r, i) {
   var labelText = document.createTextNode(""
       + "<br/><div class='row'>"
       + "<div class='col-12'> "
@@ -337,7 +291,6 @@ function printResult(r, i)
   labelDiv.innerHTML = labelText.textContent;
   outputResult.appendChild(labelDiv);
 
-
   var content = document.createElement("div");
   content.innerHTML = ""
   + "<br/> x: " + r.x
@@ -345,7 +298,6 @@ function printResult(r, i)
   + "<br/> z: " + r.z;
 
   outputResult.appendChild(content);
-
 }
 
 // Input of points to create template
@@ -378,7 +330,3 @@ var divContent = document.createTextNode(""
       + " /> "
   + "</div> " 
 + "</div> ");
-
-
-
-
